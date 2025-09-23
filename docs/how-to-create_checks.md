@@ -46,9 +46,13 @@ It can be one of:
 
 or a user-defined function.
 
-#### Tailor-made check functions
+### Tailor-made check functions
 
-Users can also define their own check functions. The only requirement is to follow the same signature pattern as below.
+Users can also define their own verification functions. The only requirement is to follow the same signature pattern below.
+
+`data` always receives an object that has a `.lazyframe` (a polar `LazyFrame`) and `.key`, which is the name of the column to be validated.
+
+Finally, it must return a polar `LazyFrame` with a binary column.
 
 ```py title="getting_started.py" linenums="4" hl_lines="1"
 --8<-- "notebooks/checks.py:4:9"

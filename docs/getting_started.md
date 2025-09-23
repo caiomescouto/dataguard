@@ -19,7 +19,7 @@ Consider an `age` column configuration that demonstrates DataGuard's data qualit
 
 - **Type Safety**: Enforcing `integer` data type prevents string or float contamination
 - **Null Prevention**: `nullable: False` ensures no missing age values slip through
-- **Range Validation**: Age bounds (0-150) catch unrealistic values like negative ages or extreme outliers
+- **Range Validation**: Age bounds `[0-150)` catch unrealistic values like negative ages or extreme outliers
 - **Business Logic**: Reflects real-world constraints for human age data
 
 ```py title="getting_started.py" linenums="20" hl_lines="6 7 12-13 16-17"

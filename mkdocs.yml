@@ -35,3 +35,11 @@ markdown_extensions:
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.superfences
+
+nav:
+  - Home: index.md
+  - Getting Started: getting_started.md
+  - User Guide:
+      - How to create checks: how-to-create_checks.md
+  - API Reference:
+      - dataguard: api.md
