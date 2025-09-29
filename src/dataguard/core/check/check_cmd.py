@@ -80,7 +80,8 @@ def create_complex_expression(
             return exp_1.and_(exp_2)
         case CheckCases.DISJUNCTION:
             return exp_1.or_(exp_2)
-        case _:
+        case _:  # pragma: no cover
+            # This is unreachable due to pydantic validation
             raise ValueError(
                 f'Invalid check_case: {case_check_expr.check_case}'
             )
