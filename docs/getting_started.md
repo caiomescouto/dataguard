@@ -78,7 +78,7 @@ Let's deep dive into the second error `Is greater than or equal to`.
 
 #DFErrorSchema(
 # type='SchemaErrorReason.DATAFRAME_CHECK', 
-# message='Column \'age\' failed validator number 0: <Check error: The column #under validation is greater than or equal to "0"> failure case examples: [{\'age\': -5}]', 
+# message='Column \'age\' failed validator number 0: <Check error: The column under validation is greater than or equal to "0"> failure case examples: [{\'age\': -5}]', 
 # level=<ErrorLevel.ERROR: 'error'>, 
 # title='Is greater than or equal to', 
 # traceback=None, 

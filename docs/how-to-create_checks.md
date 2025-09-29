@@ -61,8 +61,8 @@ Finally, it must return a polar `LazyFrame` with a binary column.
 Let's use the above function to perform the same check we did before for the `age` column. We'll also use other fields to understand how they modify the report output.
 
 
-```py title="getting_started.py" linenums="9" hl_lines="12-16 50-52"
---8<-- "notebooks/checks.py:9"
+```py title="getting_started.py" linenums="9" hl_lines="12-16 57"
+--8<-- "notebooks/checks.py:9:44"
 
 #{
 #  "error_reports": [
@@ -96,4 +96,56 @@ Instead of creating two separate checks, we implemented our own function as a si
 
 ## Complex check expression
 
-## DF level expressions
+We can combine simple expressions to create complex ones using **check cases**. Three types are available:
+
+```
+'condition'
+'conjunction'
+'disjunction'
+```
+
+Let's perform the same check we did before for the `age` column but combine the checks into a `conjunction` case.
+
+```py title="getting_started.py" linenums="49" hl_lines="12-21"
+--8<-- "notebooks/checks.py:49:78"
+
+#{
+#  "error_reports": [
+#    {
+#      "name": "Age must be not null, grater than or equal to 0 and less than 150",
+#      "errors": [
+#        {
+#          "type": "SchemaErrorReason.SERIES_CONTAINS_NULLS",
+#          "message": "non-nullable column 'age' contains null values",
+#          "level": "error",
+#          "title": "Not_Nullable",
+#          "traceback": null
+#        },
+#        {
+#          "type": "SchemaErrorReason.DATAFRAME_CHECK",
+#          "message": "Column \'age\' failed validator number 0: <Check error: The column under validation is greater than or equal to "0" and The column under validation is less than "150"> failure case examples: [{\'age\': -5}, {\'age\': 150}]",
+#          "level": "error",
+#          "title": "Is greater than or equal to and Is less than",
+#          "traceback": null
+#        }
+#      ],
+#      "total_errors": 2,
+#      "id": "1351fbab-6dbd-424c-a349-74d601518d5c"
+#    }
+#  ],
+#  "exceptions": []
+#}
+```
+
+Complex check expressions always have the same structure and can be combined in nested expressions.
+
+```
+'check_case': <conjunction/disjunction/condition>
+'expressions': [<2 expressions that can be simple or another complex one>]
+```
+
+## DataFrame level expressions
+
+We can also define checks at the DataFrame level. When applying a check to multiple columns, you can either copy the same check to each column or define it once at the DataFrame level.
+
+The check must go into the check container at the config level and not inside a column. Apart from that, you can either check all columns or define a list of columns using the `subject` argument that receives a list of column names.
